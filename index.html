@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Skyline RolePlay | Завантажити MTA </title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0c10;
+            color: #eef2ff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1f24;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff4500;
+            border-radius: 10px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid #ff4500;
+            padding-left: 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #ff4500;
+            color: #fff;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #ff4500;
+            color: #ff4500;
+        }
+
+        .btn-outline:hover {
+            background: #ff4500;
+            color: #fff;
+            transform: scale(1.02);
+        }
+
+        .btn:hover {
+            background: #e03e00;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 69, 0, 0.4);
+        }
+
+        header {
+            background: #080a0ecc;
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a2d35;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff4500, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ff4500;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #0b0e14 0%, #1a1f2a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            color: #b9c3d4;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .news-card {
+            background: #12151e;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid #292e3a;
+            transition: 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            border-color: #ff4500;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .news-img {
+            height: 180px;
+            background: #1e2432;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #ff4500;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-date {
+            font-size: 0.8rem;
+            color: #ff8c5a;
+            margin-bottom: 8px;
+        }
+
+        .news-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            background: #0f1119;
+            padding: 28px;
+            border-radius: 28px;
+            text-align: center;
+            transition: 0.2s;
+            border: 1px solid #262b36;
+        }
+
+        .feature-item:hover {
+            border-color: #ff4500;
+            transform: scale(1.02);
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: #ff4500;
+            margin-bottom: 18px;
+        }
+
+        .stats {
+            background: #07090e;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: #12161f;
+            padding: 28px 38px;
+            border-radius: 40px;
+            min-width: 160px;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #ff4500;
+        }
+
+        .leaderboard {
+            background: #0b0e16;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid #262d3a;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-bottom: 1px solid #1e2330;
+            font-weight: 500;
+        }
+
+        .leaderboard-item:last-child {
+            border: none;
+        }
+
+        .rank {
+            font-weight: 800;
+            color: #ff8c5a;
+        }
+
+        footer {
+            background: #04060a;
+            padding: 48px 0 24px;
+            border-top: 1px solid #1f232c;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            color: #ccc;
+            margin-right: 20px;
+            font-size: 1.6rem;
+            transition: 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #ff4500;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">SKYLINE RP</div>
+            <ul class="nav-links">
+                <li><a href="#">Головна</a></li>
+                <li><a href="#">Новини</a></li>
+                <li><a href="#">Завантажити гру(В-розробці)</a></li>
+                <!-- 🔽 ФОРУМ ТЕПЕР ВЕДЕ НА ПОТРІБНИЙ САЙТ -->
+                <li><a href="https://mateo141511-rgb.github.io/Skyline-RP/" target="_blank" rel="noopener noreferrer">Форум</a></li>
+                <li><a href="#">Донат</a></li>
+                <li><a href="#">Топ гравців</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <h1>Skyline RolePlay</h1>
+            <p>Український рольовий проект на базі MTA. Реалістичні закони, економіка та спільнота. Стань частиною історії!</p>
+            <div class="hero-buttons">
+                <!-- 🔽 КНОПКА "ЗАВАНТАЖИТИ ГРУ" (без лаунчера) -->
+                <a href="#" class="btn" id="downloadGameBtn"><i class="fas fa-download"></i> Завантажити гру</a>
+                <!-- 🔽 РОБОЧЕ ПОСИЛАННЯ НА DISCORD -->
+                <a href="https://discord.gg/nJKSYm96" target="_blank" class="btn btn-outline"><i class="fab fa-discord"></i> Приєднатись до Discord</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2><i class="fas fa-newspaper" style="margin-right: 12px;"></i> Останні новини</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-img"><i class="fas fa-car-side"></i></div>
+                    <div class="news-content">
+                        <div class="news-date"></div>
+                        <h3 class="news-title">Оновлення автомобілів +60 нових моделей</h3>
+                        <p>Додано новий транспорт, тюнінг та кастомні звуки. Апдейт вже доступний!</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-img"><i class="fas fa-gavel"></i></div>
+                    <div class="news-content">
+                        <div class="news-date"></div>
+                        <h3 class="news-title">Судова система та адвокатура</h3>
+                        <p>Повністю перероблена юридична механіка. Тепер ви можете стати адвокатом!</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-img"><i class="fas fa-chart-line"></i></div>
+                    <div class="news-content">
+                        <div class="news-date"></div>
+                        <h3 class="news-title">Економічний вайп та новий старт</h3>
+                        <p>Перезапуск економіки з балансом. Всі гравці отримають компенсацію.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: #070a10;">
+        <div class="container">
+            <h2><i class="fas fa-star"></i> Чому Skyline RP?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Античит та безпека</h3>
+                    <p>Потужна система захисту, адміністрація 24/7.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Активна спільнота</h3>
+                    <p>Понад 30+ онлайн щодня. Форуми, івенти, стріми.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Унікальні розробки</h3>
+                    <p>Власні скрипти, роботи, фракції та бізнеси.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Івенти</h3>
+                    <p>Щотижневі гонки, стрілялки та рольові події з призами.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2><i class="fas fa-chart-simple"></i> Статистика проекту</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">20+</div>
+                    <div>Гравців щодня</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div>Фракцій</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">320+</div>
+                    <div>Авто на сервері</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100</div>
+                    <div>Рейтинг спільноти</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2><i class="fas fa-list-ol"></i> Топ гравців</h2>
+            <div class="leaderboard">
+                <div class="leaderboard-item"><span class="rank">#1</span> <span>Kai_angel</span> <span>34 520 RP</span></div>
+                <div class="leaderboard-item"><span class="rank">#2</span> <span>Jenny_Kitty</span> <span>31 520 RP</span></div>
+                <div class="leaderboard-item"><span class="rank">#3</span> <span>Diana_Rider</span> <span>27 450 RP</span></div>
+                <div class="leaderboard-item"><span class="rank">#4</span> <span>Sweete_Fox</span> <span>25 990 RP</span></div>
+                <div class="leaderboard-item"><span class="rank">#5</span> <span>Mike_Phantom</span> <span>22 340 RP</span></div>
+            </div>
+            <div style="margin-top: 30px; text-align: center;">
+                <a href="#" class="btn btn-outline">Повний рейтинг →</a>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: linear-gradient(95deg, #0e111a, #05070c);">
+        <div class="container" style="text-align: center;">
+            <h2>Готові почати гру?</h2>
+            <p style="margin-bottom: 28px; max-width: 600px; margin-left: auto; margin-right: auto;">Завантаж клієнт гри та приєднуйся до кримінального світу Лос-Сантоса по-українськи.</p>
+            <a href="#" class="btn" id="downloadGameBtn2"><i class="fab fa-windows"></i> Завантажити гру (Windows)</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <div class="logo" style="margin-bottom: 12px;">Skyline RolePlay</div>
+                <p>© 2025 Всі права захищено.<br>Неофіційний фанатський проект.</p>
+            </div>
+            <div>
+                <h4>Навігація</h4>
+                <ul style="list-style: none; margin-top: 8px;">
+                    <li><a href="#" style="color:#aaa; text-decoration: none;">Правила сервера</a></li>
+                    <li><a href="#" style="color:#aaa; text-decoration: none;">Документація</a></li>
+                    <li><a href="#" style="color:#aaa; text-decoration: none;">Вакансії</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Соціальні мережі</h4>
+                <div class="social-links" style="margin-top: 12px;">
+                    <a href="https://discord.gg/nJKSYm96" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; font-size: 0.8rem; border-top: 1px solid #1a1e28; padding-top: 24px;">
+            <i class="fas fa-code"></i> Розроблено для спільноти Skyline RolePlay
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Анімація чисел статистики
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const animateNumber = (el) => {
+        let raw = el.innerText;
+        let isPlus = raw.includes('+');
+        let final = parseInt(raw.replace(/[^0-9]/g, ''));
+        if (isNaN(final)) final = 1000;
+        let current = 0;
+        let increment = Math.ceil(final / 60);
+        let timer = setInterval(() => {
+            current += increment;
+            if (current >= final) {
+                el.innerText = final.toLocaleString() + (isPlus ? '+' : '');
+                clearInterval(timer);
+            } else {
+                el.innerText = current.toLocaleString() + (isPlus ? '+' : '');
+            }
+        }, 20);
+    };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateNumber(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    statNumbers.forEach(num => observer.observe(num));
+
+    // Тимчасове повідомлення для кнопки "Завантажити гру" (поки немає файлу)
+    const downloadBtns = document.querySelectorAll('#downloadGameBtn, #downloadGameBtn2');
+    downloadBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('🔧 Завантаження гри з’явиться найближчим часом. Слідкуйте за новинами у Discord!');
+        });
+    });
+</script>
+</body>
+</html>
